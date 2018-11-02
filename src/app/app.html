@@ -1,0 +1,45 @@
+<ion-menu [content]="content" id="menu" persistent='true'>
+             
+    
+        <ion-content style="background-color: #FFFFFF">
+            <ion-list style="padding-left: 3%">
+             
+                <ion-item menuClose #rootNav (click)="navigateToPage('AddminEventsPage')" class="icn">
+                    <ion-icon class=icons name="ios-home-outline"></ion-icon>
+                    <span> MyTrips</span>
+                </ion-item>                   
+                <ion-item menuClose #rootNav (click)="navigateToPage('GmapCurrLocPage')" class="icn" >
+                    <ion-icon class=icons name="ios-person-add-outline" style="font-weight: bold"></ion-icon>
+                    <span>Google Map</span>   
+                </ion-item>
+                
+                <ion-item menuClose #rootNav (click)="navigateToPage('MakeAdminPage')" class="icn" *ngIf="showTeam">
+                    <ion-icon class=icons name="ios-person-outline"></ion-icon>
+                    <span> Make Admin </span>
+                </ion-item>
+                <ion-item menuClose #rootNav (click)="navigateToPage('TeamPage')" class="icn" *ngIf="showTeam">
+                    <ion-icon class=icons name="ios-people-outline"></ion-icon>
+                    <span> Team </span>
+                </ion-item>
+                <!-- <ion-item menuClose #rootNav (click)="navigateToPage('IssuesPage')" class="icn">
+                    <ion-icon class=icons name="ios-warning-outline"></ion-icon>
+                    <span> Issues </span>    
+                </ion-item> -->
+                <ion-item menuClose #rootNav (click)="navigateToPage('AdminIssuesPage')" class="icn" *ngIf="showTeam">
+                    <ion-icon class=icons name="ios-warning-outline"></ion-icon>
+                    <span>Total Issues </span>
+                </ion-item>
+                <ion-item menuClose #rootNav (click)="navigateToPage('TotalEventsPage')" class="icn" *ngIf="showTeam">
+                    <ion-icon class=icons name="ios-list-box-outline"></ion-icon>
+                    <span>Total Events </span>
+                </ion-item>
+             
+                <ion-item menuClose #rootNav (click)="showLogoutConfirm()" class="icn">
+                    <ion-icon class=icons name="ios-log-out-outline"></ion-icon>
+                    <span> Logout </span>
+                </ion-item>
+            </ion-list>        
+        </ion-content>   
+    </ion-menu>
+           
+    <ion-nav id="nav"  #content swipeEnabled="false"  [root]="rootPage"></ion-nav>

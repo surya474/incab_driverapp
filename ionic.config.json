@@ -1,0 +1,7 @@
+{
+  "name": "drivercab",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "ionic-angular"
+}

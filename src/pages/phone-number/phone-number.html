@@ -1,0 +1,46 @@
+<ion-content class="home-background">
+   
+  <!-- <div style="text-align: center; margin-top:5%">
+      <img style="background-color: transparent !important; width: 30%; text-align:center;
+   height: 30%;" src="assets/imgs/JS_logo.jpg">
+    </div> -->    
+
+<div style="text-align: center; margin-top: 10%; margin-bottom: 10%">
+  <h6 style="color: #4f4f4f;">Please confirm your country code and enter your phone number</h6>
+</div>
+
+<ion-searchbar placeholder="Search your country" [(ngModel)]="searchTerm" (ionInput)="setFilteredItems()"></ion-searchbar>
+
+<ion-list>
+  <ion-item *ngFor="let country of countryList" (click)="filterCountryCode(country)">
+    {{country}}
+  </ion-item>         
+</ion-list>
+<form [formGroup]="phoneNumberGroup">
+  <ion-row id="phoneNumberForm">
+    <ion-col col-4>
+      <ion-item>
+        <ion-label floating>Code</ion-label>
+        <ion-input type="tel" formControlName="dialCode" readonly></ion-input>
+      </ion-item>
+    </ion-col>
+    <ion-col col-8>
+      <ion-item class="padding-left-2px">
+        <ion-label floating>Phone Number</ion-label>
+        <ion-input [textMask]="{mask: mask}" type="tel" #myProp (ionBlur)="trimLastCharacter(myProp.value)" formControlName="phoneNumber"></ion-input>
+      </ion-item>
+    </ion-col>
+  </ion-row>
+</form>
+<div padding>
+    
+  <button ion-button color="primary" (click)="sendOTP()" block>Login</button>
+</div>
+
+<!-- 
+<div style="text-align: center; margin-top:5%">
+  <img class="foter" src="assets/imgs/logo2.png">
+</div> -->
+
+</ion-content>
+   

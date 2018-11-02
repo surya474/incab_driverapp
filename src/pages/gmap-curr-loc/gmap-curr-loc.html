@@ -1,0 +1,27 @@
+<ion-header>
+
+      <ion-navbar>
+          <ion-title>gmap-curr-Loc</ion-title>  
+          <button ion-button menuToggle icon-only>
+              <ion-icon name='menu'></ion-icon>
+            </button>                          
+      </ion-navbar>
+   
+      <ion-item>     
+         <ion-label>Available</ion-label>
+        <ion-toggle (ionChange)='getToggle(isAvailable)' checked="isAvailable"></ion-toggle>
+      </ion-item>
+
+
+</ion-header>       
+    
+
+<ion-content padding>                   
+ 
+
+<div #map id="map">  
+</div>        
+          
+
+     
+</ion-content>      
