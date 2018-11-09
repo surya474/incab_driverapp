@@ -1,5 +1,5 @@
 import { Component, ViewChild, ElementRef } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, Modal, ModalController } from 'ionic-angular';
 import { Geolocation } from '@ionic-native/geolocation';
 import { LatLng } from '@ionic-native/google-maps';
 import { MapProvider } from '../../providers/map/map';
@@ -29,7 +29,7 @@ export class GmapCurrLocPage {
   @ViewChild('map') mapElement: ElementRef;
   private map;
    uid="5bbd90a684f620dddd9b7977"
-  constructor( public alertProv:AppalertProvider, private socket: Socket,public navCtrl: NavController,private geolocation: Geolocation,
+  constructor(public modalCtrl:ModalController, public alertProv:AppalertProvider, private socket: Socket,public navCtrl: NavController,private geolocation: Geolocation,
      public navParams: NavParams, public gmap: MapProvider) {
            
     this.isAvailable = false;      
@@ -54,16 +54,24 @@ export class GmapCurrLocPage {
 
 
 
-callAlert(data){
-  this.alertProv.alertTrip().then(res=>{
-    if(res){
-  this.socket.emit('driverResp',data)
-    }
-    else{
+callAlert(data){ 
+     
+  // let modal = this.modalCtrl.create("ShowRideReqModalPage",{data:data},{showBackdrop:true, enableBackdropDismiss:true});
+  // modal.present();
 
+  this.alertProv.alertTrip(data).then(res=>{
+    if(res){
+   data['reqStatus']=1
+   data['driverId']=this.uid
+  this.socket.emit('driverRespForCabRequest',data)
+    }    
+    else {
+      data['reqStatus']=0
+      data['driverId']=this.uid
+    this.socket.emit('driverRespForCabRequest',data)
     }
-  })
-}
+  })    
+}    
   getMessages() {
     let observable = new Observable(observer => {
       this.socket.on('reqCab', (data) => {
@@ -73,7 +81,7 @@ callAlert(data){
     return observable;
   }
 
-
+    
   async  getCabsData() {
 
     await this.geolocation.getCurrentPosition().then((resp) => {

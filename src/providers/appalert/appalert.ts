@@ -15,13 +15,14 @@ export class AppalertProvider {
     console.log('Hello AppalertProvider Provider');
   }
 
-
-  alertTrip() {
+  
+  alertTrip(data) {
   return new Promise(resolve=>{
-    let alert = this.alertCtrl.create({
-      title: 'New Request',
-      message: 'From : to : ',
-      buttons: [        
+    let alert = this.alertCtrl.create({   
+      title: 'New Request',    
+      message: `<div><ion-row><ion-col style="font-style:bold">From:</ion-col><h5 style="font-size:12px">${data.from}</h5></ion-row></div>
+      <ion-row><ion-col>To:</ion-col><h5 style="font-size:12px">${data.to}</h5></ion-row></div>  `,
+      buttons: [          
         {
           text: 'Accept',
           handler: () => {

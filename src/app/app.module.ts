@@ -21,9 +21,11 @@ import { AppalertProvider } from '../providers/appalert/appalert';
 import { ConfirmcabprovProvider } from '../providers/confirmcabprov/confirmcabprov';
 import { ConfigProvider } from '../providers/config/config';
 import { HttpClientModule } from '@angular/common/http';
-const socketconfig: SocketIoConfig = { url: 'http://incabnode.appspot.com:8810', options: {} };
-    //url: 'http://ec2-18-217-223-215.us-east-2.compute.amazonaws.com:8810
-var config = {
+  const socketconfig: SocketIoConfig = { url: 'localhost:8810', options: {} };
+      //url: 'http://ec2-18-217-223-215.us-east-2.compute.amazonaws.com:8810
+      //'http://incabnode.appspot.com:8810   
+
+    var config = {
   apiKey: "AIzaSyBQMOZ_MldImSHRmEE12UCoZPllRrq_PrY",
     authDomain: "incabdriver.firebaseapp.com",
     databaseURL: "https://incabdriver.firebaseio.com",
