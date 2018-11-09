@@ -46,7 +46,18 @@ export class GmapCurrLocPage {
              console.log("in my id",data)
                this.callAlert(data)
            }  
-    });     
+    });    
+ 
+this.socket.on('respfromserver', (data) => {
+  console.log("rsp of trip status",data)
+  if(data.driverId==this.uid){
+    if(data.status==1){
+      alert("Ride request Accepted"+JSON.stringify(data))
+    }
+  }   
+  
+});        
+    
     // this.getMessages().subscribe(res=>{
     //   alert(JSON.stringify(res))
     // })
@@ -63,6 +74,8 @@ callAlert(data){
     if(res){
    data['reqStatus']=1
    data['driverId']=this.uid
+   data['driverName']="hari Prasad"
+   
   this.socket.emit('driverRespForCabRequest',data)
     }    
     else {
